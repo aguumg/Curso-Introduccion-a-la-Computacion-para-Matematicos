@@ -1,0 +1,3 @@
+Para compilar
+
+g++ -o suma -O2 -std=c++11 suma.cpp
