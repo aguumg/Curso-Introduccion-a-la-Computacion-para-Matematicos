@@ -1,0 +1,20 @@
+HP(M,P)--->B
+	RV=False
+	for pos_inicial in PosEnM(M,P[0]){
+		RV<--RV or HP_pos_inicial(M,P,pos_inicial)
+	}
+	return RV
+
+HP_pos_inicial(M,P,pos_inicial)--->B
+	if(P.len()==1){
+		RV<--True
+	}else{
+		RV<--False
+		M.escribir(pos_inicial,2)
+		Q<--P
+		Q.remove(Q[0])
+		for x in PosAlr(M,pos_inicial,Q[0]){
+			RV<--RV or HP_pos_inicial(M,Q,x)
+		}
+	}
+	return RV

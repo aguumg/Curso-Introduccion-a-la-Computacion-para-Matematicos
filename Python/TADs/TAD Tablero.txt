@@ -1,0 +1,82 @@
+Tad Tablero:
+
+-Estrucutra de representacion del TAD: Tablero:=<mi_tablero: lista(lista(ELEM))>
+-Invariante de representacion: mi_tablero.Iesimo(i).longitud()=mi_tablero.Iesimo(j).longitud() para todo i,j.
+-Agoritmos de las operaciones para la estructura de representacion elegida:
+n,m,i,j: Z; T,T_2: Tablero
+
+CrearTablero(m,n)--->Tablero
+#Pre: m,n>0
+#Crea una tablero vacio de m filas x n columnas.
+RV.mi_tablero<--CrearLista()
+while(m>0){
+	RV.mi_tablero.Agregar(CrearLista())
+	m<--m-1
+	}
+return RV.mi_tablero
+
+T.Ancho()--->Z
+#Devuelve la cantidad de columnas
+return T.mi_tablero.Iesimo(0).longitud() #Arrancamos a contar las filas y col desde 0.
+
+T.Alto()--->Z
+#Devuelve la cantidad de filas
+return return T.mi_tablero.longitud()
+
+T.InsertarEn(n,i,j)
+#Pre: n!=0 y T.Ancho()>j>=0 y T.Alto()>i>=0
+#Pone el valor n en la fila i columna j. (arrancamos a contar desde 0)
+T.mi_tablero.Iesimo(i).Insertar(j,n)
+
+T.ValorEn(i,j)--->Z
+#Pre: T.Ancho()>j>=0 y T.Alto()>i>=0
+#Devuelve el valor de la casilla de la fila i col j.
+return T.mi_tablero.Iesimo(i).Iesimo(j)
+
+T._Listar_filas()--->Lista(ELEM)
+#Defino esto porque no se si es válido hacer T_2.mi_tablero en el caso de la funcion que anexa.
+#Devuelve una lista con las filas del tablero.
+filas=CrearLista()
+i<--0
+while(i<T.Alto()){
+	filas.Agregar(T.mi_tablero.Iesimo(i))
+	i<--i+1
+	}
+
+
+T._Listar_col()--->Lista(ELEM)
+#Devuelve una lista con las columnas del tablero.
+col=CrearLista()
+filas=T._Listar_filas()
+i<--0
+j<--0
+while(j<T.Ancho){
+	while(i<filas.longitud()){
+		col.Agregar(filas.Iesimo(i).Iesimo(j))
+		i<--i+1
+		}
+	j<--j+1
+	}
+return col
+
+
+T.FusionarHorizontalCon(T_2)
+#Pre: T.Alto()=T_2.Alto()
+#Anexa a la derecha de T un tablero T_2.
+filas_T_2=T_2._Listar_filas()
+i<--0
+while(i<T_2.Alto()){
+	T.mi_tablero.Insertar(i,filas_T_2.Iesimo(i))
+	#Estoy asumiendo que si uso la funcion Insertar para lista de listas, concatena.
+	i<--i+1
+	}
+
+T.FusionarVerticalCon(T_2)
+#Pre: T.Ancho()=T_2.Ancho()
+#Anexa abajo de T un tablero T_2
+filas_T_2=T_2._Listar_filas()
+i<--0
+while(i<T_2.Alto()){
+	T.mi_tablero.Agregar(filas_T_2.Iesimo(i))
+	i<--i+1
+	}

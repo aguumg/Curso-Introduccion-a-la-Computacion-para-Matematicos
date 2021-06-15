@@ -1,0 +1,42 @@
+TAD ArbolBinario:
+(Not: AB=Arbol Binario)
+
+-Estructura de representacion del TAD: 
+	ArbolBinario:=<primero: Ref(TNodo)>
+	Nodo:=<valor:Z, izq: Ref(TNodo), der: Ref(TNodo)>
+
+-Invariante de rep: AB.Raiz apunta a la Raiz del arbol binario.
+Las hojas son nodos N tales que N.izq=None, N.der=None.
+
+-Algoritmos de rep:
+
+CrearArbolBinarioValor(valor)--->AB
+#Crea un AB con primero=valor.
+RV.primero<--Valor
+return RV
+
+A.Raiz()--->Z
+#Devuelve el entero almacenado en la Raiz del AB A.
+return A.primero.valor
+
+A.HayIzq?()--->B
+#Dice si el AB tiene subarbol izq.
+return (A.primero.izq=None)
+
+A.HayDer?()--->B
+#Dice si el AB tiene subarbol der.
+return (A.primero.der=None)
+
+A.Izq()--->AB(Z)					#Cabe aclarar que en la implementacion en Python, hay que definir el TAD Nodo, por lo que si queres 									devolver el arbol izquierdo, tenes que transformar el nodo A.primero.izq al TAD arbol. (Aca asumimos 										que un Nodo es un Arbol Binario)
+#Pre: A.HayIzq()
+#Devuelve el subarbol izq.
+B=ArbolBinario(1)
+B.primero=A.primero.izq
+return B
+
+A.Der()--->AB(Z)
+#Pre: A.HayDer()
+#Devuelve el subarbol der.
+B=ArbolBinario(1)
+B.primero=A.primero.der
+return B

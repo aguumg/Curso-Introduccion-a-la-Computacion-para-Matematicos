@@ -1,0 +1,63 @@
+Tad Estanteria:
+
+-Estrucutra de representacion del TAD: Estanteria:=<mi_estanteria: lista(Conjunto(ELEM))>
+-Invariante de representacion: mi.estanteria.longitud()>0
+-Agoritmos de las operaciones para la estructura de representacion elegida:
+n,m:Z; e:ELEM; E:Estanteria;
+
+
+CrearEstanteria(n)--->Estanteria
+#Precondicion: n>0
+#Crea una estanteria con n anaqueles
+RV.mi_estanteria<--CrearLista()
+while n>0{
+	RV.mi_estanteria.Agregar(CrearConjunto())
+	n<--n-1
+	}
+return RV.mi_estanteria
+
+E.ExisteAnaquel(n)--->B
+#Determina si el estante E tiene un anaquel en la posicion n.
+RV<--E.mi_estanteria.longitud()>=n
+
+
+E.ContenidoAnaquel(n)--->Conjunto(ELEM)
+#Precondicion: E.ExisteAnaquel(n)
+#Devuelve el contenido del anaquel n-esimo.
+RV<--E.mi_estanteria.Iésimo(n)
+return RV
+
+
+E.PonerEnAnaquel(e,n)
+#Precondicion: E.ExisteAnaquel(n)
+#Agrega el elemento e al anaquel n-esimo.
+E.mi_estanteria.Iésimo(n).Agregar(e)
+
+
+E._VaciarAnaquel(n)
+#Pre: E.ExisteAnaquel(n)
+Anaquel_n<--E.ContenidoAnaquel(n).ListarElementos()	#Como lista
+i<--0
+while(i<Anaquel_n.longitud()){
+	E.mi_estanteria.Iesimo(n).Eliminar(Anaquel_n[i])
+	i<--i+1
+	}
+
+
+E.IntercambiarAnaqueles(n,m)
+#Pre: E.ExisteAnaquel(n) y E.ExisteAnaquel(m)
+#Intercambia los anaqueles n y m.
+Anaquel_n<--E.ContenidoAnaquel(n).ListarElementos()	#Como lista
+Anaquel_m<--E.ContenidoAnaquel(m).ListarElementos()
+E._VaciarAnaquel(n)
+E._VaciarAnaquel(m)
+i<--0
+while(i<Anaquel_n.longitud()){
+	E.PonerEnAnaquel(m, Anaquel_n[i])
+	i<--i+1
+j<--0
+while(j<Anaquel_m.longitud()){
+	E.PonerEnAnaquel(n, Anaquel_m[i])
+	j<--j+1
+
+

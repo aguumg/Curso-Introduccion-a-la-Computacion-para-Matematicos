@@ -1,0 +1,88 @@
+TAD Lista con nodos:
+
+-Estructura de rep:
+	Lista:=<primero: Ref(TNodo)>
+	Nodo:=<valor:Z, siguiente: Ref(TNodo)>
+
+-Invariante de rep:
+Lista.primero apunta al primer elemento de la lista y no hay ciclos entre los nodos. Es decir, no existen nodos n1,n2,...,n_m tales que 
+n1.siguiente=n2, n2.siguiente=n3, ... , n_(m-1).siguiente=n_m, 
+n_m.siguiente=n_1.
+
+-Algoritmos de rep:
+L: Lista(Z); i,x,y:Z
+
+
+CrearListaNodo()--->Lista(Z):
+#Crea una lista vacía
+RV.primero<---None
+return RV
+
+L.Agregar(x)
+#Inserta x al final de L
+if(L.primero=None){
+	L.primero<--Nodo(x,None)
+}else{
+	aux<--L.primero
+	while(aux.siguiente!=None){
+		aux<--aux.siguiente
+	}
+	aux.siguiente<--Nodo(x,None)				#Notar que al modificar aux se modifcia self. Porque aux no es una copia del nodo, es una REFERENCIA del nodo de L, entonces cuando lo modifique, se va a modificar L.
+}
+
+
+L.BorrarTodos(x)
+#Borra todas las apariciones de x en L
+aux<--L.primero
+while(aux.siguiente!=None){
+		if(aux.valor=x){
+			aux<--aux.siguiente
+		}else{
+			aux.siguiente
+		}
+}
+
+
+L.Reemplazar(x,y)
+#Reemplaza en L todas las ocurrencias de x por y
+aux<--L.primero
+while(aux.siguiente!=None){
+		if(aux.valor=x){
+			aux<--Nodo(y,siguiente)
+		}else{
+			aux.siguiente
+		}
+}
+
+
+L.Longitud()--->Z
+#Devuelve la cantidad de elementos de la listqa
+RV<--0
+aux<--L.primero
+while(aux.siguiente!=None){
+		aux<--aux.siguiente
+		RV<--RV+1
+}
+return RV
+
+
+L.Iesimo(i)--->Z
+#Pre: L.Longitud>i>=0
+#Devuelve el i-esimo elemento de L
+aux<--L.primero
+while(i>0){
+	aux<--aux.siguiente
+	i<--i-1
+}
+return aux
+
+
+L.EstaVacia()--->B
+#Dice si L esta vacia o no.
+if(L.primero=None){
+	RV<--True
+}else{
+	RV<--False
+}
+return RV
+

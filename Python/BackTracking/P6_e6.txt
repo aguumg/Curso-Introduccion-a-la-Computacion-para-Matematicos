@@ -1,0 +1,11 @@
+[1,2,3,4]
+permut(A)--->Lista(Lista(ELEM))
+RV<--CrearLista()
+if(A.longitud()==1){
+	RV.Agregar(A.Iesimo(1))
+}else{
+	i<--0
+	while(i<A.longitud()){
+		RV.Insertar(i,[A[i]]+permut(A.BorrarIesimo(i))
+		i<--i+1
+	}

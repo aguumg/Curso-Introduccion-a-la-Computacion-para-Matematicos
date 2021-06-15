@@ -1,0 +1,23 @@
+Practica 7:
+Ejercicio 3:
+
+(a)Max(Arbol)--->Z:
+#Caso base: A es una hoja
+if(not A.HayIzq?() and not A.HayDer?()){
+	RV<--A.Raiz()
+}else{
+	if(not A.HayIzq?()){
+		RV<--maximo{A.Raiz(),Max(A.Der())
+	}elif(not A.HayDer?()){
+		RV<--maximo{A.Raiz(),Max(A.Izq()))
+	}else{
+		RV<--maximo{A.Raiz(),Max(A.Izq()),Max(A.Der())
+}
+
+hanoi(n,1,3,2)
+	if(n>1)
+		hanoi(n-1,1,2,3)
+		mover el disco superior de 1 a 3
+		hanoi(n-1,2,3,1)
+	else
+		mover el disco superior de 1 a 3
